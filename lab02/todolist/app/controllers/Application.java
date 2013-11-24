@@ -1,10 +1,11 @@
 package controllers;
 
+import models.Task;
 import play.*;
-
 import play.mvc.*;
-
 import views.html.*;
+import play.data.*;
+import static play.data.Form.*;
 
 public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class);
@@ -14,7 +15,9 @@ public class Application extends Controller {
 	}
 
 	public static Result tasks() {
-		return TODO;
+		return ok(
+			    views.html.index.render(Task.all(), taskForm)
+			  );
 	}
 
 	public static Result newTask() {
