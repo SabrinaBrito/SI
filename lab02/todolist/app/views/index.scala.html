@@ -11,13 +11,14 @@
         Projeto:   <input type="text" name="projetoAssociado" title="Escolha o nome do projeto"> <br>
         Descrição: <input type="text" name="descricao" title="Escolha a descrição da tarefa"> <br>
         Prioridade: <input type="number" name="prioridade" title="Escolha o valor da prioridade"> <br>
-
+		Essa tarefa já foi realizada? : <input type="checkbox" name="taredaRealizada" title="Marque se a tarefa foi concluída."
+        	   <input type="hidden" name="tarefaRealizada" value="Feito">
+       		   <input type="submit" value="Criar tarefa">
         
-        <input type="submit" value="Criar">
-        
+               
     }
     
-    <h1>@tasks.size() tarefas(s)</h1>
+    <h1>@tasks.size() Tarefas(s) Realizada(s)</h1>
     
     <ul>
         @for(task <- tasks) {
@@ -25,7 +26,25 @@
                 Projeto: @task.getProjetoAssociado() <br>
                 Descrição: @task.getDescricao() <br>
                 Prioridade: @task.getPrioridade() <br>
+                Situação da tarefa: @task.getTarefaRealizada() <br>
                 
+                @form(routes.Application.deleteTask(task.getId())) {
+                    <input type="submit" value="Apagar tarefa">
+                }
+            </li>
+        }
+    </ul>
+    
+	
+	<h1>@tasks.size() Tarefas(s) Não Realizada(s)</h1>
+    
+    <ul>
+        @for(task <- tasks) {
+           <li>
+                Projeto: @task.getProjetoAssociado() <br>
+                Descrição: @task.getDescricao() <br>
+                Prioridade: @task.getPrioridade() <br>
+                Situação da tarefa: @task.getTarefaRealizada() <br>
                 
                 @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Apagar tarefa">
