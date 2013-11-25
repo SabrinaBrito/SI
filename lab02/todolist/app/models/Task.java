@@ -13,12 +13,12 @@ public class Task extends Model implements Comparable<Object>{
 	@Id
 	public Long id;
 
-	// @Required
-	public String label;
-	public String descricao;
-	public String projetoAssociado;
+	@Required
+	public String label = "0";
+	public String descricao = "0";
+	public String projetoAssociado = "0";
 	public int prioridade;
-	public boolean tarefaRealizada = false;
+	public String tarefaRealizada = "Tarefa ainda nao foi realizada";
 
 	public static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
@@ -26,18 +26,22 @@ public class Task extends Model implements Comparable<Object>{
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public Long getId() {
+		return id;
 	}
 
-	public boolean isTarefaRealizada() {
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public String getTarefaRealizada() {
 		return tarefaRealizada;
 	}
-
-	public void setTarefaRealizada(boolean tarefaRealizada) {
-		this.tarefaRealizada = tarefaRealizada;
+	
+	public String getProjetoAssociado() {
+		return projetoAssociado;
 	}
-
+	
 	public static List<Task> all() {
 		return find.all();
 	}
@@ -50,14 +54,7 @@ public class Task extends Model implements Comparable<Object>{
 		find.ref(id).delete();
 	}
 
-	public static void marcaTarefa(Long id) {
-		Task task = find.ref(id);
-		if (task.isTarefaRealizada() == true) {
-			task.setTarefaRealizada(false);
-		} else {
-			task.setTarefaRealizada(true);
-		}
-	}
+
 
 	@Override
 	public int compareTo(Object arg0) {

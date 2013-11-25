@@ -9,7 +9,7 @@ create table task (
   descricao                 varchar(255),
   projeto_associado         varchar(255),
   prioridade                integer,
-  tarefa_realizada          boolean,
+  tarefa_realizada          varchar(255),
   constraint pk_task primary key (id))
 ;
 
