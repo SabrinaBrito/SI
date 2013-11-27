@@ -33,12 +33,21 @@ public class Application extends Controller {
 			return redirect(routes.Application.tasks());  
 		  }	
 	}
-
+	/**
+	 * Deleta uma tarefa
+	 * @param id
+	 * @return
+	 */
 	public static Result deleteTask(Long id) {
 		Task.delete(id);
     	return redirect(routes.Application.tasks());
 	}
-	  
+	
+	/**
+	 * Atualiza a tarefa
+	 * @param id
+	 * @return
+	 */
 	public static Result update(Long id) {
         Task.update(id);
         return redirect(routes.Application.tasks());

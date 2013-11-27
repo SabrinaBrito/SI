@@ -9,7 +9,9 @@ import javax.persistence.*;
 
 @Entity
 public class Task extends Model implements Comparable<Object>{
-
+/**
+ * Atributos
+ */
 	@Id
 	public Long id;
 
@@ -21,6 +23,10 @@ public class Task extends Model implements Comparable<Object>{
 	
 	public static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
+	/**
+	 * gets e sets
+	 * @return
+	 */
 	public Long getId() {
 		return id;
 	}
@@ -73,6 +79,10 @@ public class Task extends Model implements Comparable<Object>{
 		find.ref(id).delete();
 	}
 
+	/**
+	 * Atualiza o status da tarefa
+	 * @param id
+	 */
 	public static void update(Long id){
 		Task task = find.ref(id);
         if (task.getTarefaRealizada() == true) {
@@ -82,7 +92,10 @@ public class Task extends Model implements Comparable<Object>{
         }
         task.update();
     }
-
+	
+	/**
+	 * Serve pra comparar tarefas
+	 */
 	@Override
 	public int compareTo(Object arg0) {
 		int result;
